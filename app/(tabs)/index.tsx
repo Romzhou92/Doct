@@ -5,6 +5,7 @@ type FormData = {
   email: string;
   signature: string;
   selectedOption: string;
+  selectedMultiOptions: string[];
 };
 import { Image, StyleSheet, Platform, TextInput, Pressable, Modal } from 'react-native';
 import { HelloWave } from '@/components/HelloWave';
@@ -34,6 +35,7 @@ export default function HomeScreen() {
   const [signature, setSignature] = useState('');
   const [showSignatureModal, setShowSignatureModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+  const [selectedMultiOptions, setSelectedMultiOptions] = useState<string[]>([]);
 
   const handleTextChange = (newText: string) => {
     setText(newText);
@@ -140,7 +142,8 @@ export default function HomeScreen() {
       date: birthdate,
       email,
       signature,
-      selectedOption
+      selectedOption,
+      selectedMultiOptions
     };
   
     try {
@@ -163,15 +166,25 @@ export default function HomeScreen() {
       setSignature('');
       setFormattedDate('');
       setSelectedOption('');
-      // Show success message
+      setSelectedMultiOptions([]);      // Show success message
       alert('Formulaire envoyé avec succès !');
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Erreur lors de l\'envoi du formulaire');
     }
   };
-  
-    return (
+
+  const handleMultiOptionToggle = (value: string) => {
+    setSelectedMultiOptions(prevOptions => {
+      if (prevOptions.includes(value)) {
+        return prevOptions.filter(option => option !== value);
+      } else {
+        return [...prevOptions, value];
+      }
+    });
+  };
+
+  return (
       <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
@@ -212,6 +225,31 @@ export default function HomeScreen() {
           placeholderTextColor="#999"
         />
         </ThemedView>
+
+        {/* MULTI-SELECT OPTIONS */}
+<ThemedView style={styles.stepContainer}>
+  <ThemedText type="subtitle">Step 11: Sexe</ThemedText>
+  <View style={styles.multiOptionsContainer}>
+    <Pressable 
+      style={[
+        styles.multiOptionButton,
+        selectedMultiOptions.includes('option1') && styles.multiOptionButtonSelected
+      ]}
+      onPress={() => handleMultiOptionToggle('option1')}
+    >
+      <ThemedText>Homme</ThemedText>
+    </Pressable>
+    <Pressable 
+      style={[
+        styles.multiOptionButton,
+        selectedMultiOptions.includes('option2') && styles.multiOptionButtonSelected
+      ]}
+      onPress={() => handleMultiOptionToggle('option2')}
+    >
+      <ThemedText>Femme</ThemedText>
+    </Pressable>
+  </View>
+</ThemedView>
 
          {/* DATE */}
         <ThemedView style={styles.stepContainer}>
@@ -436,5 +474,25 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     color: Platform.OS === 'ios' ? '#000' : '#333',
+  },
+  multiOptionsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginVertical: 8,
+  },
+  multiOptionButton: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 12,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    minWidth: '45%',
+  },
+  multiOptionButtonSelected: {
+    backgroundColor: '#A1CEDC',
+    borderColor: '#A1CEDC',
   },
 });
