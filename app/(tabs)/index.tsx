@@ -176,11 +176,12 @@ export default function HomeScreen() {
 
   const handleMultiOptionToggle = (value: string) => {
     setSelectedMultiOptions(prevOptions => {
+      // If clicking an already selected option, deselect it
       if (prevOptions.includes(value)) {
-        return prevOptions.filter(option => option !== value);
-      } else {
-        return [...prevOptions, value];
+        return [];
       }
+      // If selecting a new option, deselect others and select the new one
+      return [value];
     });
   };
 
