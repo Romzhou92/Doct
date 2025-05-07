@@ -18,6 +18,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import SignatureScreen from 'react-native-signature-canvas';
 import { View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { VoiceInput } from '@/components/VoiceInput';
 
 
 export default function HomeScreen() {
@@ -495,5 +496,10 @@ const styles = StyleSheet.create({
   multiOptionButtonSelected: {
     backgroundColor: '#A1CEDC',
     borderColor: '#A1CEDC',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 8,
   },
 });

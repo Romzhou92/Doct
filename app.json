@@ -26,7 +26,14 @@
     "plugins": [
       "expo-router",
       "expo-splash-screen",
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+
+      [
+        "expo-speech",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME), to access your microphone"
+        }
+      ]
     ]
   }
 }
