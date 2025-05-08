@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';  // Add this import at the top
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
@@ -34,6 +35,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="doleances"
+        options={{
+          title: 'Doleances',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="0.circle.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
@@ -47,6 +55,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="gear" color={color} />,
         }}
       />
+      
     </Tabs>
   );
 }
