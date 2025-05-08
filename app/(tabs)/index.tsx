@@ -28,8 +28,8 @@ export default function HomeScreen() {
   const [lastName, setLastName] = useState('');
   const [formattedFirstName, setFormattedFirstName] = useState('');
   const [formattedLastName, setFormattedLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [formattedEmail, setFormattedEmail] = useState('');
+  const [comment, setComment] = useState('');
+  const [formattedEmail, setFormattedComment] = useState('');
   const [birthdate, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [formattedDate, setFormattedDate] = useState('');
@@ -98,18 +98,18 @@ export default function HomeScreen() {
       setFormattedFirstName('Error formatting text');
     }
   };
-  const handleEmailChange = (newText: string) => {
-    setEmail(newText);
+  const handleCommentChange = (newText: string) => {
+    setComment(newText);
     try {
       if (!TextController || typeof TextController.formatText !== 'function') {
-        setFormattedEmail('Error: Controller not available');
+        setFormattedComment('Error: Controller not available');
         return;
       }
       const formatted = TextController.formatText(newText);
-      setFormattedEmail(formatted);
+      setFormattedComment(formatted);
     } catch (error) {
-      console.error('Error formatting email:', error);
-      setFormattedEmail('Error formatting email');
+      console.error('Error formatting comment:', error);
+      setFormattedComment('Error formatting comment');
     }
   };
   const handleDateChange = (event: any, selectedDate?: Date) => {
@@ -141,7 +141,7 @@ export default function HomeScreen() {
       lastName,
       firstName,
       date: birthdate,
-      email,
+      email: comment,
       signature,
       selectedOption,
       selectedMultiOptions
@@ -163,7 +163,7 @@ export default function HomeScreen() {
       setLastName('');
       setFirstName('');
       setDate(new Date());
-      setEmail('');
+      setComment('');
       setSignature('');
       setFormattedDate('');
       setSelectedOption('');
@@ -213,6 +213,12 @@ export default function HomeScreen() {
           onChangeText={handleLastNameChange}
           placeholder="Nom"
           placeholderTextColor="#999"
+          autoComplete="name"
+          enablesReturnKeyAutomatically
+          textContentType="name"
+          // Enable speech input
+          keyboardType="default"
+          returnKeyType="done"
         />
       </ThemedView>
 
@@ -294,12 +300,11 @@ export default function HomeScreen() {
   <ThemedText type="subtitle">Step 7: COMMENTAIRE</ThemedText>
   <TextInput
     style={styles.input}
-    value={email}
-    onChangeText={handleEmailChange}
+    value={comment}
+    onChangeText={handleCommentChange}
     placeholder="Commentaire"
     placeholderTextColor="#999"
-    keyboardType="email-address"
-    autoCapitalize="none"
+
   />
 </ThemedView>
 
