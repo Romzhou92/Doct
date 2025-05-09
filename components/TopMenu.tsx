@@ -11,8 +11,8 @@ export function TopMenu() {
 
   const menuItems = [
     { name: 'Home', icon: 'house.fill' as IconSymbolName, route: '/' },
-    { name: 'Doléances', icon: 'doc.text.fill' as IconSymbolName, route: '/doleances' },
-    { name: 'Settings', icon: 'gear' as IconSymbolName, route: '/settings' },
+    { name: 'Doléances', icon: '0.circle.fill' as IconSymbolName, route: '/doleances' },
+    { name: 'Settings', icon: 'gearshape.fill' as IconSymbolName, route: '/settings' },
   ];
 
   return (

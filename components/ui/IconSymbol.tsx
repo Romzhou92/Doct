@@ -16,6 +16,7 @@ const MAPPING = {
   'person': 'person',
   'paperplane.fill': 'send',
   '0.circle.fill': 'circle',
+  'gearshape.fill': 'settings',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
 } as Partial<
