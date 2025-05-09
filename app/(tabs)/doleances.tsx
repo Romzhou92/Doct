@@ -1,5 +1,5 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
+import { StyleSheet, Image, Platform, TextInput } from 'react-native';
+import { useState } from 'react';
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -8,7 +8,13 @@ import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function DoleancesScreen() {
+  const [textInput, setTextInput] = useState('');
+
+  const handleTextChange = (text: string) => {
+    setTextInput(text);
+  };
   return (
+    
     <ParallaxScrollView
           headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
           headerImage={
@@ -27,6 +33,27 @@ export default function DoleancesScreen() {
         <ThemedText type="title">Hello</ThemedText>
       </ThemedView>
 
+      <ThemedView style={styles.container}>
+        <ThemedText type="title">Doleances</ThemedText>
+        
+        
+        <ThemedView style={styles.inputContainer}>
+          <ThemedText type="subtitle">Your Message</ThemedText>
+          <TextInput
+            style={styles.input}
+            value={textInput}
+            onChangeText={handleTextChange}
+            placeholder="Enter your message here"
+            placeholderTextColor="#999"
+            multiline={true}
+            numberOfLines={4}
+            autoComplete="off"
+            enablesReturnKeyAutomatically
+            keyboardType="default"
+            returnKeyType="done"
+          />
+        </ThemedView>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
@@ -42,5 +69,24 @@ export default function DoleancesScreen() {
         titleContainer: {
           flexDirection: 'row',
           gap: 8,
+        },
+        container: {
+          flex: 1,
+          padding: 16,
+        },
+        inputContainer: {
+          marginTop: 20,
+          width: '100%',
+        },
+        input: {
+          borderWidth: 1,
+          borderColor: '#ccc',
+          borderRadius: 8,
+          padding: 12,
+          marginTop: 8,
+          minHeight: 100,
+          textAlignVertical: 'top',
+          color: Platform.OS === 'ios' ? '#000' : '#333',
+          backgroundColor: '#fff',
         },
 })
