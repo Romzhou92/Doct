@@ -21,7 +21,7 @@ export default function SettingsScreen() {
             />
           }>
     <ThemedView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ThemedText type="title">Settings</ThemedText>
+      <ThemedText type="title">Antecedents</ThemedText>
     </ThemedView>
     </ParallaxScrollView>
   );

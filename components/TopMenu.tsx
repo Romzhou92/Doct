@@ -13,6 +13,7 @@ export function TopMenu() {
     { name: 'Home', icon: 'house.fill' as IconSymbolName, route: '/' },
     { name: 'Doléances', icon: '0.circle.fill' as IconSymbolName, route: '/doleances' },
     { name: 'Settings', icon: 'gearshape.fill' as IconSymbolName, route: '/settings' },
+    { name: 'Conclusions', icon: 'gearshape.fill' as IconSymbolName, route: '/conclusions2' },
   ];
 
   return (
